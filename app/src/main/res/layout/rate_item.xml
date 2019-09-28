@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="rateInfo"
+            type="com.testrates.data.model.RateItemObject" />
+    </data>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/rate_item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_12"
+            android:weightSum="3">
+            <ImageView
+                android:id="@+id/country_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                bind:imageSrc="@{rateInfo.countryImage}"
+                bind:ignore="ContentDescription" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_weight="1.7"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:id="@+id/country_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{rateInfo.countryName}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+                <TextView
+                    android:id="@+id/country_currecny_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{rateInfo.countryCurrencyName}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/country_name"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+                <EditText
+                    android:id="@+id/rate_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    bind:textFormat="@{rateInfo.countryRate}"
+                    android:layout_gravity="center|end"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    bind:ignore="LabelFor" />
+               <LinearLayout
+                   android:id="@+id/rate_text_layout"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintBottom_toBottomOf="parent">
+                   <TextView
+                       android:id="@+id/rate_amount_text"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="@dimen/text_dimen_20"
+                       android:layout_gravity="center_horizontal"
+                       bind:textViewFormat="@{rateInfo.countryRate}"/>
+
+                   <View
+                       android:layout_width="wrap_content"
+                       android:layout_height="@dimen/dimen_2"
+                       android:background="@color/line_color"/>
+               </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
